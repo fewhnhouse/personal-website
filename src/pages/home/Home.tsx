@@ -27,8 +27,7 @@ const TitleCard = styled(Card)`
 `
 
 const ContentContainer = styled.div`
- background: rgb(184,176,237);
-background: linear-gradient(180deg, rgba(184,176,237,1) 0%, rgba(255,255,255,1) 20%);   width: 100%;
+  background: white;
   display: flex;
   height: 500px;
   padding: ${props => props.theme.paddings.large};
