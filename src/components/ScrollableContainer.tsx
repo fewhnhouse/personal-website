@@ -1,17 +1,18 @@
 import React from 'react'
 import { interpolate, animated } from 'react-spring'
-import { Card } from 'antd'
 
 export default ({
   scrollTop,
+  interpolationFactor,
   children,
 }: {
   scrollTop: number[]
+  interpolationFactor: number
   children?: React.ReactNode
 }) => {
   const scrollInterpolation = interpolate(
     scrollTop,
-    (o: number) => `translate(0px,-${o * 5}px)`
+    (o: number) => `translate(0px,${o * interpolationFactor}px)`
   )
 
   return (
@@ -20,7 +21,7 @@ export default ({
         transform: scrollInterpolation,
       }}
     >
-      <Card>{children}</Card>
+      {children}
     </animated.div>
   )
 }

@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from 'react'
+import styled from 'styled-components'
 
+const Header = styled.h1`
+  font-size: 84px;
+  color: white;
+  font-weight: bold;
+`
 export default () => {
   const [titleIndex, setTitleIndex] = useState(0)
   const items = '://fewhnhouse'.split('')
@@ -15,9 +21,5 @@ export default () => {
     }
   }, [items.length, titleIndex])
 
-  return (
-    <h1 style={{ fontSize: 84, color: 'white', fontWeight: 'bold' }}>
-      {items.filter((_, index) => index < titleIndex)}
-    </h1>
-  )
+  return <Header>{items.filter((_, index) => index < titleIndex)}</Header>
 }
