@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react'
-import { Card } from 'antd'
+import { Card, BackTop, Icon, Divider } from 'antd'
 import { useSpring, animated } from 'react-spring'
 import ScrollableContainer from '../../components/ScrollableContainer'
 import Title from './Title'
@@ -10,6 +10,11 @@ import logo from '../../assets/logo.svg'
 import Image from '../../components/Image'
 import Navbar from './Navbar'
 import useWindowSize from '../../utils/useWindowSize'
+import HoverCard from '../../components/HoverCard'
+import Footer from './Footer'
+import { FlexParent } from '@fe.whnhouse/flex.box/build/Flex'
+import SocialMediaButton from './SocialMediaButton'
+import Wave from './Wave'
 
 const TitleCard = styled(Card)`
   height: 200px;
@@ -22,29 +27,23 @@ const TitleCard = styled(Card)`
 `
 
 const ContentContainer = styled.div`
-  background: white;
-  width: 100%;
+ background: rgb(184,176,237);
+background: linear-gradient(180deg, rgba(184,176,237,1) 0%, rgba(255,255,255,1) 20%);   width: 100%;
   display: flex;
   height: 500px;
   padding: ${props => props.theme.paddings.large};
 `
 
-const LeftImg = styled(Image)`
+const LeftContainer = styled.div`
   position: absolute;
   left: 20px;
-  background: white;
-  box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
-    0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
   top: 0px;
 `
 
-const RightImg = styled(Image)`
+const RightContainer = styled.div`
   position: absolute;
-  box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
-    0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
   right: 20px;
   top: -500px;
-  background: white;
 `
 
 export default () => {
@@ -119,23 +118,50 @@ export default () => {
       <Rabbit height={height} />
 
       <ContentContainer>
-        <Image url={logo} width={200} height={200} />
-        <h1>Felix Wohnhaas</h1>
+        <Wave />
+        <FlexParent
+          style={{ width: '100%', height: '100%' }}
+          justify='space-between'
+          align='center'
+        >
+          <Image url={logo} width={200} height={200} />
+          <h1>Felix Wohnhaas</h1>
+          <FlexParent style={{ height: '100%' }}>
+            <Divider
+              style={{ height: '100%', marginRight: 20 }}
+              type='vertical'
+            />
+            <FlexParent
+              style={{ height: '100%' }}
+              direction='column'
+              justify='space-between'
+              align='center'
+            >
+              <SocialMediaButton type='facebook' />
+              <SocialMediaButton type='twitter' />
+              <SocialMediaButton type='github' />
+              <SocialMediaButton type='instagram' />
+            </FlexParent>
+          </FlexParent>
+        </FlexParent>
       </ContentContainer>
       <div style={{ height: 1000 }}>
         <Particles />
+
         <ScrollableContainer interpolationFactor={-0.2} scrollTop={st}>
-          <LeftImg url={logo} width={400} height={400} />
+          <LeftContainer>
+            <HoverCard backgroundSrc={logo}></HoverCard>
+          </LeftContainer>
         </ScrollableContainer>
-        <ScrollableContainer interpolationFactor={0.1} scrollTop={st}>
-          <RightImg url={logo} width={400} height={400} />
+        <ScrollableContainer interpolationFactor={0.3} scrollTop={st}>
+          <RightContainer>
+            <HoverCard backgroundSrc={logo}></HoverCard>
+          </RightContainer>
         </ScrollableContainer>
 
         <Particles />
       </div>
-      <div
-        style={{ background: 'white', width: '100%', height: '500px' }}
-      ></div>
+      <Footer />
     </div>
   )
 }
