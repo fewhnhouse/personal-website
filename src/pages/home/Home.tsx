@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react'
-import { Card, BackTop, Icon, Divider } from 'antd'
+import { Divider, Typography } from 'antd'
 import { useSpring, animated } from 'react-spring'
 import ScrollableContainer from '../../components/ScrollableContainer'
 import Title from './Title'
@@ -8,28 +8,18 @@ import Rabbit from './Rabbit'
 import styled from 'styled-components'
 import logo from '../../assets/logo.svg'
 import Image from '../../components/Image'
-import Navbar from './Navbar'
+import Navbar from './Nav/Navbar'
 import useWindowSize from '../../utils/useWindowSize'
 import HoverCard from '../../components/HoverCard'
-import Footer from './Footer'
+import Footer from './Nav/Footer'
 import { FlexParent } from '@fe.whnhouse/flex.box/build/Flex'
 import SocialMediaButton from './SocialMediaButton'
 import Wave from './Wave'
 
-const TitleCard = styled(Card)`
-  height: 200px;
-  box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
-    0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
-  margin: auto;
-  background: rgba(0, 0, 0, 0.2);
-  position: relative;
-  bottom: 100px;
-`
-
 const ContentContainer = styled.div`
   background: white;
   display: flex;
-  height: 500px;
+  height: 300px;
   padding: ${props => props.theme.paddings.large};
 `
 
@@ -53,16 +43,13 @@ export default () => {
   ]
   const [minimize, setMinimize] = useState(false)
 
-  const interpolatePos: any = (x: number, y: number) =>
-    `translate3d(${x / 20}px,${y / 20}px,0)`
-
   const [springProperties, setSpring] = useSpring(() => ({
     xy: [0, 0],
     config: { mass: 10, tension: 550, friction: 140 },
   }))
 
   const posProps = useSpring({
-    left: minimize ? -200 : width / 2 - 300,
+    right: minimize ? -268 : width / 2 - 350,
     top: minimize ? -50 : height - 200,
   })
 
@@ -96,7 +83,8 @@ export default () => {
       style={{
         width: '100vw',
         height: '100vh',
-        overflow: 'auto',
+        overflowY: 'auto',
+        overflowX: 'hidden',
         position: 'relative',
       }}
     >
@@ -105,14 +93,11 @@ export default () => {
         style={{
           position: 'fixed',
           zIndex: 1001,
-          transform: springProperties.xy.interpolate(interpolatePos),
           ...scaleProps,
           ...posProps,
         }}
       >
-        <TitleCard>
-          <Title />
-        </TitleCard>
+        <Title xy={springProperties.xy} />
       </animated.div>
       <Rabbit height={height} />
 
@@ -121,10 +106,25 @@ export default () => {
         <FlexParent
           style={{ width: '100%', height: '100%' }}
           justify='space-between'
-          align='center'
+          align='flex-start'
         >
           <Image url={logo} width={200} height={200} />
-          <h1>Felix Wohnhaas</h1>
+          <FlexParent
+            style={{ padding: '0px 20px' }}
+            direction='column'
+            align='flex-start'
+          >
+            <h1>Felix Wohnhaas</h1>
+            <Typography.Text style={{ textAlign: 'justify' }}>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              Accusantium modi eveniet cumque corporis. Odio magnam omnis porro
+              saepe dolorum quidem ex velit, magni corporis rem aliquid ipsam
+              earum molestiae? Pariatur? Lorem ipsum dolor sit amet, consectetur
+              adipisicing elit. Dolorem similique consectetur possimus quo
+              doloribus, doloremque sit facilis quidem, id et illum debitis
+              maxime quia recusandae minus necessitatibus excepturi? Atque, ex!
+            </Typography.Text>
+          </FlexParent>
           <FlexParent style={{ height: '100%' }}>
             <Divider
               style={{ height: '100%', marginRight: 20 }}

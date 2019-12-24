@@ -5,6 +5,7 @@ import styled from 'styled-components'
 
 const Container = styled.div`
   width: 100%;
+  margin-top: 100px;
   height: ${(props: { height: number }) => props.height}px;
 `
 export default ({ height }: { height: number }) => {

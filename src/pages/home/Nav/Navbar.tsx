@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { useSpring, animated } from 'react-spring'
 import { FlexParent } from '@fe.whnhouse/flex.box'
+import NavItem from './NavItem'
 
 const Nav = styled(animated.nav)`
   width: 100%;
@@ -18,8 +19,14 @@ export default ({ opaque }: { opaque: boolean }) => {
   })
   return (
     <Nav opaque={opaque} style={props}>
-      <FlexParent direction='row' justify='space-around' align='center'>
-        nav
+      <FlexParent
+        style={{ height: '100%', width: '100%' }}
+        direction='row'
+        justify='flex-start'
+        align='center'
+      >
+        <NavItem to='/' title='Home' />
+        <NavItem to='/' title='Second' />
       </FlexParent>
     </Nav>
   )

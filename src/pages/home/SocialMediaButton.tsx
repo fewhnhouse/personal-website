@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Button, Icon } from 'antd'
+import { Button } from 'antd'
 
 const ImageContainer = styled(Button)`
   width: 52px;
