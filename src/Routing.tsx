@@ -11,14 +11,13 @@ const Routing = () => {
         <Route path='/' exact>
           <Home />
         </Route>
-        <Route path='/vita'>
+        <Route path='/vita' exact>
           <Vita />
         </Route>
-        <Route path='/projects'>
+        <Route path='/projects' exact>
           <Projects />
         </Route>
       </Switch>
-      <Redirect to='/' />
     </BrowserRouter>
   )
 }
