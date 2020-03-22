@@ -1,25 +1,32 @@
 import React, { useCallback, useState } from 'react'
-import { Divider, Typography } from 'antd'
+import { Divider, Typography, Button } from 'antd'
 import { useSpring, animated } from 'react-spring'
 import ScrollableContainer from '../../components/ScrollableContainer'
 import Title from './Title'
 import Particles from './Particles'
 import Rabbit from './Rabbit'
 import styled from 'styled-components'
-import logo from '../../assets/logo.svg'
-import Image from '../../components/Image'
-import Navbar from './Nav/Navbar'
+import Navbar from '../../components/Nav/Navbar'
 import useWindowSize from '../../utils/useWindowSize'
 import HoverCard from '../../components/HoverCard'
-import Footer from './Nav/Footer'
-import { FlexParent } from '@fe.whnhouse/flex.box/build/Flex'
+import Footer from '../../components/Nav/Footer'
+import { FlexParent } from '@fe.whnhouse/flex.box'
 import SocialMediaButton from './SocialMediaButton'
 import Wave from './Wave'
+import ImageQuadrant from './ImageQuadrant'
+import {
+  FacebookOutlined,
+  TwitterOutlined,
+  GithubOutlined,
+  InstagramOutlined,
+  FileTextOutlined,
+  BuildOutlined,
+} from '@ant-design/icons'
+import Competences from './Competences'
 
-const ContentContainer = styled.div`
+export const ContentContainer = styled.div`
   background: white;
-  display: flex;
-  height: 300px;
+  height: ${(props: { height?: string }) => props.height || ''};
   padding: ${props => props.theme.paddings.large};
 `
 
@@ -32,7 +39,11 @@ const LeftContainer = styled.div`
 const RightContainer = styled.div`
   position: absolute;
   right: 20px;
-  top: -500px;
+  top: -600px;
+`
+
+export const Header = styled.h1`
+  text-transform: uppercase;
 `
 
 export default () => {
@@ -99,67 +110,77 @@ export default () => {
       >
         <Title xy={springProperties.xy} />
       </animated.div>
-      <Rabbit height={height} />
+      <Rabbit height={height - 100} />
 
       <ContentContainer>
-        <Wave />
-        <FlexParent
-          style={{ width: '100%', height: '100%' }}
-          justify='space-between'
-          align='flex-start'
-        >
-          <Image url={logo} width={200} height={200} />
-          <FlexParent
-            style={{ padding: '0px 20px' }}
-            direction='column'
-            align='flex-start'
-          >
-            <h1>Felix Wohnhaas</h1>
-            <Typography.Text style={{ textAlign: 'justify' }}>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Accusantium modi eveniet cumque corporis. Odio magnam omnis porro
-              saepe dolorum quidem ex velit, magni corporis rem aliquid ipsam
-              earum molestiae? Pariatur? Lorem ipsum dolor sit amet, consectetur
-              adipisicing elit. Dolorem similique consectetur possimus quo
-              doloribus, doloremque sit facilis quidem, id et illum debitis
-              maxime quia recusandae minus necessitatibus excepturi? Atque, ex!
-            </Typography.Text>
-          </FlexParent>
-          <FlexParent style={{ height: '100%' }}>
-            <Divider
-              style={{ height: '100%', marginRight: 20 }}
-              type='vertical'
-            />
+        <FlexParent style={{ width: '100%', height: '100%' }}>
+          <Wave />
+          <FlexParent justify='space-between' align='flex-start'>
+            <ImageQuadrant />
             <FlexParent
-              style={{ height: '100%' }}
+              style={{ padding: '0px 20px' }}
               direction='column'
-              justify='space-between'
-              align='center'
+              align='flex-start'
             >
-              <SocialMediaButton type='facebook' />
-              <SocialMediaButton type='twitter' />
-              <SocialMediaButton type='github' />
-              <SocialMediaButton type='instagram' />
+              <Header>Felix Wohnhaas</Header>
+              <Typography.Text style={{ textAlign: 'justify' }}>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Accusantium modi eveniet cumque corporis. Odio magnam omnis
+                porro saepe dolorum quidem ex velit, magni corporis rem aliquid
+                ipsam earum molestiae? Pariatur? Lorem ipsum dolor sit amet,
+                consectetur adipisicing elit. Dolorem similique consectetur
+                possimus quo doloribus, doloremque sit facilis quidem, id et
+                illum debitis maxime quia recusandae minus necessitatibus
+                excepturi? Atque, ex!
+              </Typography.Text>
+            </FlexParent>
+            <FlexParent style={{ height: '100%' }}>
+              <Divider
+                style={{ height: '100%', marginRight: 20 }}
+                type='vertical'
+              />
+              <FlexParent
+                style={{ height: '100%' }}
+                direction='column'
+                justify='space-between'
+                align='center'
+              >
+                <SocialMediaButton type={<FacebookOutlined />} />
+                <SocialMediaButton type={<TwitterOutlined />} />
+                <SocialMediaButton type={<GithubOutlined />} />
+                <SocialMediaButton type={<InstagramOutlined />} />
+              </FlexParent>
             </FlexParent>
           </FlexParent>
         </FlexParent>
       </ContentContainer>
-      <div style={{ height: 1000 }}>
+      <div style={{ height: 600 }}>
         <Particles />
 
         <ScrollableContainer interpolationFactor={-0.2} scrollTop={st}>
           <LeftContainer>
-            <HoverCard backgroundSrc={logo}></HoverCard>
+            <HoverCard>
+              <FlexParent justify='space-between' align='center'>
+                <FileTextOutlined style={{ fontSize: 30 }} />
+                <Divider type='vertical' />
+                <Button type='primary'>Look at my Vita</Button>
+              </FlexParent>
+            </HoverCard>
           </LeftContainer>
         </ScrollableContainer>
         <ScrollableContainer interpolationFactor={0.3} scrollTop={st}>
           <RightContainer>
-            <HoverCard backgroundSrc={logo}></HoverCard>
+            <HoverCard>
+              <FlexParent justify='space-between' align='center'>
+                <BuildOutlined style={{ fontSize: 30 }} />
+                <Divider type='vertical' />
+                <Button type='primary'>Check out my projects</Button>
+              </FlexParent>
+            </HoverCard>
           </RightContainer>
         </ScrollableContainer>
-
-        <Particles />
       </div>
+      <Competences />
       <Footer />
     </div>
   )

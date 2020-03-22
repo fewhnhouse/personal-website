@@ -8,7 +8,7 @@ const ImageContainer = styled(Button)`
   font-size: 24px;
 `
 
-const SocialMediaButton = ({ type }: { type: string }) => {
+const SocialMediaButton = ({ type }: { type: React.ReactNode }) => {
   return <ImageContainer icon={type}></ImageContainer>
 }
 

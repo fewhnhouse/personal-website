@@ -1,7 +1,7 @@
 import React from 'react'
 import './App.css'
-import AntNav from './pages/home/Home'
 import { ThemeProvider } from 'styled-components'
+import Routing from './Routing'
 
 const App: React.FC = () => {
   const theme = {
@@ -26,7 +26,7 @@ const App: React.FC = () => {
   return (
     <ThemeProvider theme={theme}>
       <div className='App' style={{ background: '#4834d4' }}>
-        <AntNav />
+        <Routing></Routing>
       </div>
     </ThemeProvider>
   )

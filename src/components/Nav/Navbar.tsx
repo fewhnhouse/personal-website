@@ -26,7 +26,8 @@ export default ({ opaque }: { opaque: boolean }) => {
         align='center'
       >
         <NavItem to='/' title='Home' />
-        <NavItem to='/' title='Second' />
+        <NavItem to='/vita' title='Vita' />
+        <NavItem to='/projects' title='Projects' />
       </FlexParent>
     </Nav>
   )

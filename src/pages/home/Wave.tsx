@@ -33,7 +33,7 @@ const Wave = styled.div`
   background: url(${waveSrc})
     repeat-x;
   position: absolute;
-  top: -198px;
+  top: -188px;
   width: 6400px;
   height: 198px;
   animation: ${wave} 7s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite;

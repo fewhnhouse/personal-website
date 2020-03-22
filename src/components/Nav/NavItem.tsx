@@ -1,10 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 const Item = styled.span`
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   text-transform: uppercase;
+  color: black;
   font-size: 18px;
   text-align: center;
   margin: 0 10px;
@@ -41,5 +43,9 @@ const Item = styled.span`
 `
 
 export default ({ title, to }: { title: string; to: string }) => {
-  return <Item>{title}</Item>
+  return (
+    <Link to={to}>
+      <Item>{title}</Item>
+    </Link>
+  )
 }
