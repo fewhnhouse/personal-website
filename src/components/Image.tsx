@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 const Image = styled.img`
   border-radius: 4px;
+  object-fit: cover;
   border: 1px solid black;
   width: ${props => props.width}px;
   height: ${props => props.height}px;
