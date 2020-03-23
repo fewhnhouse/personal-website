@@ -19,7 +19,7 @@ export const useHover = (ref: React.MutableRefObject<any>) => {
         }
       }
     },
-    [ref.current] // Recall only if ref changes
+    [ref] // Recall only if ref changes
   )
 
   return value

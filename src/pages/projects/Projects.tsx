@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import Navbar from '../../components/Nav/Navbar'
 import { FlexParent } from '@fe.whnhouse/flex.box/build/Flex'
-import { Card } from 'antd'
 import { useSpring, animated } from 'react-spring'
 import ProjectCard from './ProjectCard'
 import { useQuery } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
 import styled from 'styled-components'
+import { Spin } from 'antd'
 
 const Container = styled(FlexParent)`
   width: 100%;
-  padding-top: 60;
+  padding-top: 60px;
   height: 100vh;
   overflow: hidden;
   background: rgb(72, 52, 212);
@@ -51,7 +51,7 @@ interface IQueryData {
 
 export default () => {
   const [direction, setDirection] = useState(false)
-  const { loading, error, data } = useQuery<IQueryData>(REPOSITORIES)
+  const { loading, data } = useQuery<IQueryData>(REPOSITORIES)
 
   const repositories = data?.viewer.repositories.nodes
   const firstRow = repositories?.filter((_, index) => index < 5) ?? []
@@ -82,42 +82,48 @@ export default () => {
     <div>
       <Navbar opaque={true} />
       <Container justify='space-evenly'>
-        <animated.div style={props}>
-          <FlexParent direction='column'>
-            {firstRow.map(repo => (
-              <ProjectCard
-                title={repo.name}
-                description={repo.description}
-                githubLink={repo.url}
-                issues={repo.issues.totalCount}
-              ></ProjectCard>
-            ))}
-          </FlexParent>
-        </animated.div>
-        <animated.div style={props2}>
-          <FlexParent direction='column'>
-            {secondRow.map(repo => (
-              <ProjectCard
-                title={repo.name}
-                description={repo.description}
-                githubLink={repo.url}
-                issues={repo.issues.totalCount}
-              ></ProjectCard>
-            ))}
-          </FlexParent>
-        </animated.div>
-        <animated.div style={props}>
-          <FlexParent direction='column'>
-            {thirdRow.map(repo => (
-              <ProjectCard
-                title={repo.name}
-                description={repo.description}
-                githubLink={repo.url}
-                issues={repo.issues.totalCount}
-              ></ProjectCard>
-            ))}
-          </FlexParent>
-        </animated.div>
+        {loading ? (
+          <Spin style={{ marginTop: 20 }} />
+        ) : (
+          <>
+            <animated.div style={props}>
+              <FlexParent direction='column'>
+                {firstRow.map(repo => (
+                  <ProjectCard
+                    title={repo.name}
+                    description={repo.description}
+                    githubLink={repo.url}
+                    issues={repo.issues.totalCount}
+                  ></ProjectCard>
+                ))}
+              </FlexParent>
+            </animated.div>
+            <animated.div style={props2}>
+              <FlexParent direction='column'>
+                {secondRow.map(repo => (
+                  <ProjectCard
+                    title={repo.name}
+                    description={repo.description}
+                    githubLink={repo.url}
+                    issues={repo.issues.totalCount}
+                  ></ProjectCard>
+                ))}
+              </FlexParent>
+            </animated.div>
+            <animated.div style={props}>
+              <FlexParent direction='column'>
+                {thirdRow.map(repo => (
+                  <ProjectCard
+                    title={repo.name}
+                    description={repo.description}
+                    githubLink={repo.url}
+                    issues={repo.issues.totalCount}
+                  ></ProjectCard>
+                ))}
+              </FlexParent>
+            </animated.div>
+          </>
+        )}
       </Container>
     </div>
   )

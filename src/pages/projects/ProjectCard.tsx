@@ -2,10 +2,8 @@ import React from 'react'
 import { useSpring, animated } from 'react-spring'
 import { useHover } from './useHover'
 import { Card, Button, Divider } from 'antd'
-import { CardProps } from 'antd/lib/card'
 import { FlexParent } from '@fe.whnhouse/flex.box/build/Flex'
 import { GithubOutlined } from '@ant-design/icons'
-import { Link } from 'react-router-dom'
 
 interface IProjectCard {
   title: string
