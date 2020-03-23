@@ -33,13 +33,13 @@ export const ContentContainer = styled.div`
 const LeftContainer = styled.div`
   position: absolute;
   left: 20px;
-  top: 0px;
+  top: -300px;
 `
 
 const RightContainer = styled.div`
   position: absolute;
-  right: 20px;
-  top: -600px;
+  right: 100px;
+  top: -800px;
 `
 
 export const Header = styled.h1`
@@ -124,14 +124,27 @@ export default () => {
             >
               <Header>Felix Wohnhaas</Header>
               <Typography.Text style={{ textAlign: 'justify' }}>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Accusantium modi eveniet cumque corporis. Odio magnam omnis
-                porro saepe dolorum quidem ex velit, magni corporis rem aliquid
-                ipsam earum molestiae? Pariatur? Lorem ipsum dolor sit amet,
-                consectetur adipisicing elit. Dolorem similique consectetur
-                possimus quo doloribus, doloremque sit facilis quidem, id et
-                illum debitis maxime quia recusandae minus necessitatibus
-                excepturi? Atque, ex!
+                Hey! My name is Felix Wohnhaas and I am a Web Developer. I
+                studied Informatics: Games Engineering at Technical University
+                Munich and then switched University to study Media Informatics
+                at Ludwig Maximilian University of Munich to increase my
+                knowledge in UI and UX. I have been working with JavaScript and
+                Web projects roughly when I started my bachelor, in my first
+                student job. I started out using Angular.JS, and at the time, I
+                got hooked up with Meteor.JS and was amazed by how much one
+                single developer can do. I did not know much about the Web at
+                this time, but gradually increased my knowledge in different
+                areas. The switch of my Job to Motius, where I work as a Web
+                Developer since 2017, strongly helped me widening my horizon and
+                learning new things. While at the beginning I was working on
+                legacy projects involving jQuery, I soon got to know more about
+                React as I loved spending my free time learning it - and I still
+                do. Since then I have developed various fully fledged Web
+                Applications for many different clients and gathered a lot of
+                experience in the Web Sector in general. Besides coding, I love
+                doing sports, such as Kitesurfing, Mountainbiking, playing
+                Tennis or Football, or simply going for a run outside. I enjoy
+                cooking and creating new, interesting meals every day.
               </Typography.Text>
             </FlexParent>
             <FlexParent style={{ height: '100%' }}>
