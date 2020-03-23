@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { Card } from 'antd'
 import { animated, OpaqueInterpolation } from 'react-spring'
+import { useTypeWriter } from './useTypeWriter'
 
 const TitleCard = styled(Card)`
   height: 200px;
@@ -21,26 +22,15 @@ const Header = styled.h1`
   font-weight: bold;
 `
 export default ({ xy }: { xy: OpaqueInterpolation<number[]> }) => {
-  const [titleIndex, setTitleIndex] = useState(0)
-  const items = '://fewhnhouse'.split('')
   const interpolatePos: any = (x: number, y: number) =>
     `translate3d(${x / 20}px,${y / 20}px,0)`
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (titleIndex < items.length) {
-        setTitleIndex(titleIndex => titleIndex + 1)
-      }
-    }, 50)
-    return () => {
-      clearInterval(interval)
-    }
-  }, [items.length, titleIndex])
+  const title = useTypeWriter({ title: '://fewhnhouse' })
 
   return (
     <TitleCard>
       <animated.div style={{ transform: xy.interpolate(interpolatePos) }}>
-        <Header>{items.filter((_, index) => index < titleIndex)}</Header>
+        <Header>{title}</Header>
       </animated.div>
     </TitleCard>
   )
